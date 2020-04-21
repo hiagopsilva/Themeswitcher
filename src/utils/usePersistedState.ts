@@ -1,9 +1,26 @@
-import React from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 
-// import { Container } from './styles';
+type Response<T> = [
+  T,
+  Dispatch<SetStateAction<T>>
+]
 
-function usePersistedState(key: string, initialState: any) {
-  
+function usePersistedState<T>(key: string, initialState : T): Response<T> {
+  const [state, setState] = useState(() => {
+    const storageValue = localStorage.getItem(key);
+
+    if(storageValue) {
+      return JSON.parse(storageValue);
+    } else {
+      return initialState;
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(state));
+  }, [key, state])
+
+  return [state, setState];
 }
 
-export default usePersistedState
+export default usePersistedState;
