@@ -13,7 +13,7 @@ const Header: React.FC<Props> = ({ toggleTheme }) => {
 
   return (
     <Container>
-      Hello World
+      Themeswitcher
 
       <Switch
       onChange={toggleTheme}
