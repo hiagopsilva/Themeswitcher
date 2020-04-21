@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 60px;
-  background: #7159C1;
+  background: ${props => props.theme.colors.primary};
   color: #FFF;
-  display: center;
+  display: flex;
   align-items: center;
   padding: 0 30px;
 `;
